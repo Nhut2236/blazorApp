@@ -1,0 +1,24 @@
+﻿@page "/"
+@using BlazorApp.Middlewares
+@inject IJSRuntime JsRuntime
+
+@code {
+    private Session _session;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _session = await SessionManager.GetSession(JsRuntime);
+    }
+}
+
+<PageTitle>Index</PageTitle>
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+<h3>Session ID: @_session?.Id</h3>
+<h3>Session Start: @_session?.StartTime</h3>
+<h3>Language: @_session?.Language</h3>
+
+<SurveyPrompt Title="How is Blazor working for you?"/>
